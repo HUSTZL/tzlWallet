@@ -1,0 +1,37 @@
+<button type="button" onclick="register()">点击我！</button>
+<script type="text/javascript">
+
+    function register(data) {
+        var XHR = new XMLHttpRequest();
+        var FD  = new FormData();
+
+        var User = {
+            "account": "admin",
+            "name": "admin",
+            "password": "Qwert123456789",
+            "image": "https://raw.githubusercontent.com/yuechuhaoxi020609/images/main/imgs/image-20230412215415220.png"
+        }    
+
+        var data = {
+            "user": User
+        }    
+      
+        var xhr = new XMLHttpRequest();
+        xhr.open('POST', 'http://43.143.165.159:80/register');
+        xhr.onload = function (){
+            var res = JSON.parse(xhr.responseText);
+            if (res.code == 0) {
+                return alert('start successfully');
+            }
+            else if(res.code == 1) {
+                return alert('repeated account');
+            }
+            else if(res.code == 2) {
+                return alert('ERROR');
+            }
+        }
+        xhr.setRequestHeader('content-type', 'application/x-www-form-urlencoded');
+        console.log(JSON.stringify(data))
+        xhr.send(JSON.stringify(data));
+    }
+</script>

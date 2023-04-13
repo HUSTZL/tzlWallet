@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>浏览器模拟发送信息简单实现，websocket通信</title>
+</head>
+<body>
+
+</body>
+    <!-- index.html for test-->
+
+    <button onclick="send()">发送</button>
+
+    <script>
+        var ws = new WebSocket("ws://127.0.0.1:8080/echo")
+        ws.onmessage = function (event) {
+            console.log(event.data)
+        };
+
+        function send(){
+            ws.send("hello world")
+        }
+    </script>
+</html>
+
